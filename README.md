@@ -48,7 +48,7 @@ cp .env.example .env
 Add your real environment values to `.env`:
 
 ```bash
-MONGODB_URL=mongodb://127.0.0.1:27017/ai-decision-journal
+MONGODB_URL=
 OPENAI_API_KEY=your_openai_api_key
 OPENAI_MODEL=gpt-4.1-mini
 PORT=5000
@@ -72,7 +72,7 @@ http://localhost:5000
 For local MongoDB:
 
 ```bash
-MONGODB_URL=mongodb://127.0.0.1:27017/ai-decision-journal
+MONGODB_URL=
 ```
 
 For MongoDB Atlas, use the connection string from Atlas. If `mongodb+srv://` causes DNS issues on your machine, use the standard `mongodb://` replica-set string with the shard hosts, `ssl=true`, `authSource=admin`, and the Atlas replica set name.
