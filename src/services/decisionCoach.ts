@@ -40,8 +40,8 @@ const asList = (value: unknown, fallback: string[]) => {
   return cleaned.length > 0 ? cleaned : fallback;
 };
 
-const fallbackCoach = (decision: DecisionDocument): CoachResult => ({
-  summary: `You are weighing ${decision.options
+const fallbackCoach = (decision: DecisionDocument, reason?: string): CoachResult => ({
+  summary: `${reason ? `${reason} ` : ""}You are weighing ${decision.options
     .map((option) => option.label)
     .join(" vs. ")}. Slow the choice down, name the assumptions, and define what success will look like before you commit.`,
   questions: fallbackQuestions,
@@ -112,6 +112,10 @@ export async function coachDecision(decision: DecisionDocument): Promise<CoachRe
   });
 
   if (!response.ok) {
+    if (response.status === 429) {
+      return fallbackCoach(decision, "OpenAI is rate-limited or out of quota, so this offline coaching pass was used.");
+    }
+
     throw new Error(`OpenAI request failed with status ${response.status}`);
   }
 

@@ -2,7 +2,7 @@ import { connect, disconnect } from "mongoose";
 import { env } from "../config/env.js";
 async function connectToDatabase() {
     if (!env.mongoUrl) {
-        throw new Error("MONGODB_URL is required. Add it to your .env file.");
+        throw new Error("MONGODB_URL is required. Add a real value to your local .env file.");
     }
     try {
         await connect(env.mongoUrl);

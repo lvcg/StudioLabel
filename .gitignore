@@ -1,6 +1,11 @@
-# Ignore Node.js modules
+# Dependencies and generated output
 node_modules/
 dist/
 
-# Ignore environment variables file
+# Local environment and secrets
 .env
+.env.*
+!.env.example
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
