@@ -1,11 +1,48 @@
+# Decide Well
 
-# MERN Stack AI Chatbot
+Decide Well is a small AI Decision Journal. It helps you capture a decision, compare options, ask better questions, commit with a confidence score, and review the outcome later.
 
-This is an AI Chatbot application, inspired by ChatGPT, by using MERN Stack and OpenAI
+## What it does
 
-It's a customized chatbot where each message of the user is stored in DB and can be retrieved and deleted.
+- Saves decision records in MongoDB.
+- Tracks options, expected outcomes, confidence, chosen option, and review dates.
+- Generates an AI coaching pass with questions, risks, and next steps.
+- Lets you close the loop with actual outcomes and lessons learned.
+- Serves a simple dashboard from the Express app.
 
-It's a completely secure application using JWT Tokens, HTTP-Only Cookies, Signed Cookies, Password Encryption, and Middleware Chains.
+## Tech stack
 
-Contributions are welcome
+- Node.js
+- TypeScript
+- Express
+- MongoDB and Mongoose
+- OpenAI Responses API
+- Static HTML, CSS, and JavaScript frontend
 
+## Setup
+
+```bash
+npm install
+cp .env.example .env
+npm run build
+npm start
+```
+
+Then open `http://localhost:5000`.
+
+The app requires `MONGODB_URL`. `OPENAI_API_KEY` is optional for local testing; without it, the coach returns built-in decision prompts.
+
+## Development
+
+```bash
+npm run dev
+```
+
+## Environment variables
+
+```bash
+MONGODB_URL=mongodb://127.0.0.1:27017/ai-decision-journal
+OPENAI_API_KEY=your_openai_api_key
+OPENAI_MODEL=gpt-4.1-mini
+PORT=5000
+```

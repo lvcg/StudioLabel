@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Decide Well</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <span class="brand-mark">DW</span>
+          <div>
+            <h1>Decide Well</h1>
+            <p>AI Decision Journal</p>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <button class="primary" id="newDecisionButton" type="button">New Decision</button>
+          <button class="ghost" id="refreshButton" type="button">Refresh</button>
+        </div>
+
+        <div class="stats" aria-label="Decision stats">
+          <div>
+            <span id="totalCount">0</span>
+            <small>Total</small>
+          </div>
+          <div>
+            <span id="decidedCount">0</span>
+            <small>Decided</small>
+          </div>
+          <div>
+            <span id="reviewedCount">0</span>
+            <small>Reviewed</small>
+          </div>
+        </div>
+
+        <section class="decision-list" id="decisionList" aria-label="Decisions"></section>
+      </aside>
+
+      <section class="workspace">
+        <form class="editor" id="decisionForm">
+          <div class="editor-header">
+            <div>
+              <p class="eyebrow">Decision Record</p>
+              <h2 id="formTitle">Capture the choice</h2>
+            </div>
+            <span class="status-pill" id="statusPill">Draft</span>
+          </div>
+
+          <label>
+            <span>Title</span>
+            <input id="title" name="title" placeholder="Launch the beta this Friday?" required />
+          </label>
+
+          <label>
+            <span>Context</span>
+            <textarea id="context" name="context" rows="5" placeholder="What is happening, why now, and what constraints matter?" required></textarea>
+          </label>
+
+          <div class="option-grid">
+            <label>
+              <span>Option A</span>
+              <input id="optionA" placeholder="Ship now" required />
+            </label>
+            <label>
+              <span>Option B</span>
+              <input id="optionB" placeholder="Wait one week" required />
+            </label>
+          </div>
+
+          <label>
+            <span>Expected outcome</span>
+            <textarea id="expectedOutcome" rows="3" placeholder="What do you expect will happen if this goes well?"></textarea>
+          </label>
+
+          <div class="option-grid">
+            <label>
+              <span>Confidence</span>
+              <input id="confidence" type="number" min="0" max="100" placeholder="70" />
+            </label>
+            <label>
+              <span>Review date</span>
+              <input id="reviewDate" type="date" />
+            </label>
+          </div>
+
+          <div class="commit-row">
+            <label>
+              <span>Chosen option</span>
+              <select id="chosenOption">
+                <option value="">Undecided</option>
+              </select>
+            </label>
+            <button class="primary" type="submit">Save</button>
+          </div>
+        </form>
+
+        <section class="coach-panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">AI Coach</p>
+              <h2>Reasoning check</h2>
+            </div>
+            <button id="coachButton" class="secondary" type="button">Coach Me</button>
+          </div>
+
+          <p class="coach-summary" id="coachSummary">Save a decision, then run a coaching pass.</p>
+
+          <div class="insight-columns">
+            <section>
+              <h3>Questions</h3>
+              <ul id="questionsList"></ul>
+            </section>
+            <section>
+              <h3>Risks</h3>
+              <ul id="risksList"></ul>
+            </section>
+            <section>
+              <h3>Next steps</h3>
+              <ul id="nextStepsList"></ul>
+            </section>
+          </div>
+
+          <form class="review-form" id="reviewForm">
+            <div class="panel-header compact">
+              <div>
+                <p class="eyebrow">Outcome Review</p>
+                <h2>Close the loop</h2>
+              </div>
+              <button class="secondary" type="submit">Save Review</button>
+            </div>
+            <label>
+              <span>Actual outcome</span>
+              <textarea id="actualOutcome" rows="3" placeholder="What happened?"></textarea>
+            </label>
+            <label>
+              <span>Lesson</span>
+              <textarea id="lessons" rows="3" placeholder="What will you do differently next time?"></textarea>
+            </label>
+          </form>
+        </section>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

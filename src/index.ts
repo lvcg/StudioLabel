@@ -1,12 +1,14 @@
 import app from "./app.js";
+import { env } from "./config/env.js";
 import { connectToDatabase } from "./db/connection.js";
 
-//connections and listeners
-connectToDatabase() 
+connectToDatabase()
   .then(() => {
-    app.listen(5000, () => 
-      console.log("Server Open & Connected to Database ")
+    app.listen(env.port, () =>
+      console.log(`AI Decision Journal running on http://localhost:${env.port}`)
     );
   })
-
-app.listen(5000, ()=>console.log("Server Open"));
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
