@@ -1,7 +1,7 @@
 {
-  "name": "ai-decision-journal",
+  "name": "studio-label-generator",
   "version": "1.0.0",
-  "description": "A small AI-assisted decision journal built with Express, MongoDB, and the OpenAI Responses API.",
+  "description": "A polished product label generator for skincare, candle, and soap makers.",
   "main": "dist/index.js",
   "type": "module",
   "scripts": {

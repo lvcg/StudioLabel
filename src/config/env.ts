@@ -2,7 +2,7 @@ import { config } from "dotenv";
 
 config();
 
-const placeholderTokens = ["your_", "YOUR_", "CLUSTER", "PASSWORD", "OPENAI_API_KEY"];
+const placeholderTokens = ["your_", "YOUR_", "CLUSTER", "PASSWORD"];
 
 const readSecret = (name: string) => {
   const value = process.env[name]?.trim();
@@ -33,23 +33,7 @@ const readMongoUrl = () => {
   return value;
 };
 
-const readOpenAIKey = () => {
-  const value = readSecret("OPENAI_API_KEY");
-
-  if (!value) {
-    return undefined;
-  }
-
-  if (!value.startsWith("sk-")) {
-    throw new Error("OPENAI_API_KEY must look like an OpenAI API key.");
-  }
-
-  return value;
-};
-
 export const env = {
   mongoUrl: readMongoUrl(),
-  openaiApiKey: readOpenAIKey(),
-  openaiModel: process.env.OPENAI_MODEL ?? "gpt-4.1-mini",
   port: parsePort(process.env.PORT),
 };

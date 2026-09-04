@@ -1,130 +1,49 @@
-# Decide Well
+# StudioLabel
 
-Decide Well is an AI Decision Journal for slowing down important choices, recording your reasoning, and reviewing outcomes later. It turns a generic chatbot starter into a focused product: capture the decision, compare options, get a coaching pass, commit with a confidence score, and come back later to learn from what happened.
-
-## Screenshots
-
-### Desktop
-
-![Decide Well desktop dashboard](docs/screenshots/dashboard-desktop.png)
-
-### Mobile
-
-![Decide Well mobile dashboard](docs/screenshots/dashboard-mobile.png)
+StudioLabel is a polished product label generator for independent skincare, candle, and soap makers. It replaces the original AI Decision Journal with a focused maker workflow and live, print-ready label preview.
 
 ## Features
 
-- Create decision records with context, options, confidence, expected outcome, and review date.
-- Save the option you chose and mark the decision as decided.
-- Run an AI coaching pass for clarifying questions, risks, and next steps.
-- Fall back to offline coaching prompts if the OpenAI API is unavailable or rate-limited.
-- Review actual outcomes and lessons learned.
-- Store decisions in MongoDB.
-- Serve the frontend and API from one Express app.
+- Dedicated candle, skincare, and soap templates
+- Live label preview while editing
+- Structured ingredient chips with INCI guidance
+- Editable safety warnings and care instructions
+- Real EAN-13 barcode generation, checksum validation, and SVG rendering
+- Maker details, net contents, product variant, and description fields
+- Saved label library backed by local storage for zero-setup demos
+- Optional MongoDB product-label API
+- Portrait/landscape preview, print mode, and portable text export
+- Responsive editor for desktop and mobile
 
-## Tech Stack
+## Stack
 
-- Node.js
-- TypeScript
-- Express
-- MongoDB and Mongoose
-- OpenAI Responses API
-- Static HTML, CSS, and JavaScript frontend
+Node.js, TypeScript, Express, MongoDB/Mongoose, HTML, CSS, and modern JavaScript.
 
-## Getting Started
-
-Install dependencies:
+## Run locally
 
 ```bash
 npm install
+npm run build
+npm start
 ```
 
-Create your local environment file:
+Open <http://localhost:5000>. No environment variables are required for demo mode; labels persist in the browser.
 
-```bash
-cp .env.example .env
-```
+To enable the server persistence API, copy `.env.example` to `.env` and add a MongoDB connection string:
 
-Add your real environment values to `.env`:
-
-```bash
-MONGODB_URL=
-OPENAI_API_KEY=your_openai_api_key
-OPENAI_MODEL=gpt-4.1-mini
+```env
+MONGODB_URL=mongodb://localhost:27017/studiolabel
 PORT=5000
 ```
 
-Build and run:
+## API
 
-```bash
-npm run build
-npm start
-```
+- `GET /api/health`
+- `GET /api/products`
+- `POST /api/products`
+- `PATCH /api/products/:id`
+- `DELETE /api/products/:id`
 
-Open the app:
+## Important
 
-```text
-http://localhost:5000
-```
-
-## MongoDB
-
-For local MongoDB:
-
-```bash
-MONGODB_URL=
-```
-
-For MongoDB Atlas, use the connection string from Atlas. If `mongodb+srv://` causes DNS issues on your machine, use the standard `mongodb://` replica-set string with the shard hosts, `ssl=true`, `authSource=admin`, and the Atlas replica set name.
-
-## OpenAI
-
-`OPENAI_API_KEY` is optional for local testing. If it is missing, or if OpenAI returns a quota/rate-limit response, the app still saves an offline coaching pass so the journal remains usable.
-
-## Development
-
-Run TypeScript in watch mode and restart the server with Nodemon:
-
-```bash
-npm run dev
-```
-
-Build the app:
-
-```bash
-npm run build
-```
-
-Run a production-style local server:
-
-```bash
-npm start
-```
-
-## Secret Safety
-
-- Keep real credentials only in `.env`.
-- Do not commit `.env`; it is ignored by git.
-- Commit `.env.example` only with placeholders or local non-secret defaults.
-- Rotate any MongoDB or OpenAI key that was pasted into chat, logs, screenshots, or git history.
-- Use a restricted MongoDB database user for this app instead of an admin user.
-- In MongoDB Atlas, restrict Network Access to your IP while developing.
-
-## Project Structure
-
-```text
-public/
-  app.js
-  index.html
-  styles.css
-src/
-  app.ts
-  config/env.ts
-  db/connection.ts
-  index.ts
-  models/Decision.ts
-  routes/decisionRoutes.ts
-  services/decisionCoach.ts
-docs/
-  screenshots/
-```
+StudioLabel helps organize label content but does not provide legal or regulatory advice. Makers should verify labeling requirements for their product category and sales region before production.

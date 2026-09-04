@@ -3,7 +3,8 @@ import { env } from "../config/env.js";
 
 async function connectToDatabase() {
     if (!env.mongoUrl) {
-        throw new Error("MONGODB_URL is required. Add a real value to your local .env file.");
+        console.log("MONGODB_URL not configured; running in browser-storage demo mode.");
+        return;
     }
 
     try {
